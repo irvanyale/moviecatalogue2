@@ -18,6 +18,7 @@ import java.util.List;
 import app.irvanyale.com.moviecatalogue.R;
 import app.irvanyale.com.moviecatalogue.data.TvshowEntity;
 import app.irvanyale.com.moviecatalogue.util.MyIdlingResource;
+import app.irvanyale.com.moviecatalogue.viewmodel.ViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,11 +52,13 @@ public class TvShowFragment extends Fragment {
         MyIdlingResource.increment();
 
         if (getActivity() != null) {
+            ViewModelFactory factory = ViewModelFactory.getInstance(getActivity());
+
             TvShowViewModel tvShowViewModel =
-                    new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory())
+                    new ViewModelProvider(this, factory)
                             .get(TvShowViewModel.class);
 
-            List<TvshowEntity> tvshows = tvShowViewModel.getTvShows(getActivity());
+            List<TvshowEntity> tvshows = tvShowViewModel.getTvShows();
 
             TvShowAdapter tvShowAdapter = new TvShowAdapter();
             tvShowAdapter.setTvShows(tvshows);

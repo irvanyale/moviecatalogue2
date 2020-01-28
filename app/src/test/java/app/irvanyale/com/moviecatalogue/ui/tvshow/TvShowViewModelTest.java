@@ -13,31 +13,32 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import app.irvanyale.com.moviecatalogue.data.TvshowEntity;
+import app.irvanyale.com.moviecatalogue.data.source.DataRepository;
+import app.irvanyale.com.moviecatalogue.util.DataDummy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TvShowViewModelTest {
 
     @Mock
-    private Context context;
-    @Mock
-    private Resources resString;
+    private DataRepository dataRepository;
 
     private TvShowViewModel tvShowViewModel;
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
-        tvShowViewModel = new TvShowViewModel();
+        tvShowViewModel = new TvShowViewModel(dataRepository);
     }
 
     @Test
     public void getTvShows() {
-        when(context.getResources()).thenReturn(resString);
-        List<TvshowEntity> tvshowEntities = tvShowViewModel.getTvShows(context);
+        when(dataRepository.getTvShows()).thenReturn(DataDummy.generateDummyTvShows());
+        List<TvshowEntity> tvshowEntities = tvShowViewModel.getTvShows();
+        verify(dataRepository).getTvShows();
         assertNotNull(tvshowEntities);
         assertEquals(10, tvshowEntities.size());
     }

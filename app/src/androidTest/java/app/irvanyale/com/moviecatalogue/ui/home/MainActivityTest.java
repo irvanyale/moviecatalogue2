@@ -37,8 +37,8 @@ public class MainActivityTest {
     @Before
     public void setUp() {
         context = ApplicationProvider.getApplicationContext();
-        dummyMovie = DataDummy.generateDummyMovies(context);
-        dummyTvShow = DataDummy.generateDummyTvShows(context);
+        dummyMovie = DataDummy.generateDummyMovies();
+        dummyTvShow = DataDummy.generateDummyTvShows();
 
         IdlingRegistry.getInstance().register(MyIdlingResource.getIdlingResource());
     }

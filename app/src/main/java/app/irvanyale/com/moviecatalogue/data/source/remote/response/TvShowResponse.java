@@ -1,18 +1,18 @@
-package app.irvanyale.com.moviecatalogue.data;
+package app.irvanyale.com.moviecatalogue.data.source.remote.response;
 
 import android.graphics.drawable.Drawable;
 
-public class MovieEntity {
+public class TvShowResponse {
 
-    private String movieId;
+    private String tvshowId;
     private String title;
     private String releaseDate;
     private String overview;
     private String vote;
     private String image;
 
-    public MovieEntity(String movieId, String title, String releaseDate, String overview, String vote, String image) {
-        this.movieId = movieId;
+    public TvShowResponse(String tvshowId, String title, String releaseDate, String overview, String vote, String image) {
+        this.tvshowId = tvshowId;
         this.title = title;
         this.releaseDate = releaseDate;
         this.overview = overview;
@@ -20,12 +20,12 @@ public class MovieEntity {
         this.image = image;
     }
 
-    public String getMovieId() {
-        return movieId;
+    public String getTvshowId() {
+        return tvshowId;
     }
 
-    public void setMovieId(String movieId) {
-        this.movieId = movieId;
+    public void setTvshowId(String tvshowId) {
+        this.tvshowId = tvshowId;
     }
 
     public String getTitle() {
@@ -64,7 +64,7 @@ public class MovieEntity {
         return image;
     }
 
-    public void setImagePath(String image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

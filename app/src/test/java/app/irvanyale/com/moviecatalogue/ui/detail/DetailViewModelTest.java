@@ -5,40 +5,42 @@ import android.content.res.Resources;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import app.irvanyale.com.moviecatalogue.data.MovieEntity;
 import app.irvanyale.com.moviecatalogue.data.TvshowEntity;
+import app.irvanyale.com.moviecatalogue.data.source.DataRepository;
 import app.irvanyale.com.moviecatalogue.util.DataDummy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class DetailViewModelTest {
 
     @Mock
     private Context context;
-    @Mock
-    private Resources resString;
 
     private DetailViewModel viewModelMovie;
     private DetailViewModel viewModelTvShow;
 
+    @Mock
+    private DataRepository dataRepository;
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        viewModelMovie = new DetailViewModel();
-        viewModelTvShow = new DetailViewModel();
+        viewModelMovie = new DetailViewModel(dataRepository);
+        viewModelTvShow = new DetailViewModel(dataRepository);
     }
 
     @Test
     public void getMovieDetail() {
 
-        when(context.getResources()).thenReturn(resString);
-
-        MovieEntity dummyMovie = DataDummy.generateDummyMovies(context).get(0);
+        MovieEntity dummyMovie = DataDummy.generateDummyMovies().get(0);
         String movieId = dummyMovie.getMovieId();
 
         viewModelMovie.setSelectedData(context, movieId);
@@ -57,9 +59,7 @@ public class DetailViewModelTest {
     @Test
     public void getTvShowDetail() {
 
-        when(context.getResources()).thenReturn(resString);
-
-        TvshowEntity dummyTvShow = DataDummy.generateDummyTvShows(context).get(0);
+        TvshowEntity dummyTvShow = DataDummy.generateDummyTvShows().get(0);
         String tvshowId = dummyTvShow.getTvshowId();
 
         viewModelTvShow.setSelectedData(context, tvshowId);

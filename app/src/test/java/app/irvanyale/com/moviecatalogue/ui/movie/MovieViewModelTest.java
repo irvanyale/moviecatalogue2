@@ -13,31 +13,32 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import app.irvanyale.com.moviecatalogue.data.MovieEntity;
+import app.irvanyale.com.moviecatalogue.data.source.DataRepository;
+import app.irvanyale.com.moviecatalogue.util.DataDummy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MovieViewModelTest {
 
-    @Mock
-    private Context context;
-    @Mock
-    private Resources resString;
-
     private MovieViewModel viewModel;
+
+    @Mock
+    private DataRepository dataRepository;
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
-        viewModel = new MovieViewModel();
+        viewModel = new MovieViewModel(dataRepository);
     }
 
     @Test
     public void getMovies() {
-        when(context.getResources()).thenReturn(resString);
-        List<MovieEntity> movieEntities = viewModel.getMovies(context);
+        when(dataRepository.getMovies()).thenReturn(DataDummy.generateDummyMovies());
+        List<MovieEntity> movieEntities = viewModel.getMovies();
+        verify(dataRepository).getMovies();
         assertNotNull(movieEntities);
         assertEquals(10, movieEntities.size());
     }

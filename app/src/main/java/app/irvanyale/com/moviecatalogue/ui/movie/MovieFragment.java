@@ -18,6 +18,7 @@ import java.util.List;
 import app.irvanyale.com.moviecatalogue.R;
 import app.irvanyale.com.moviecatalogue.data.MovieEntity;
 import app.irvanyale.com.moviecatalogue.util.MyIdlingResource;
+import app.irvanyale.com.moviecatalogue.viewmodel.ViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,11 +52,14 @@ public class MovieFragment extends Fragment {
         MyIdlingResource.increment();
 
         if (getActivity() != null) {
+
+            ViewModelFactory factory = ViewModelFactory.getInstance(getActivity());
+
             MovieViewModel movieViewModel =
-                    new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory())
+                    new ViewModelProvider(this, factory)
                             .get(MovieViewModel.class);
 
-            List<MovieEntity> movies = movieViewModel.getMovies(getActivity());
+            List<MovieEntity> movies = movieViewModel.getMovies();
 
             MovieAdapter movieAdapter = new MovieAdapter();
             movieAdapter.setMovies(movies);

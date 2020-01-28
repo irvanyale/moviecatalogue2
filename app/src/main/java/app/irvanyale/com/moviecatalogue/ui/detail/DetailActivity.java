@@ -17,6 +17,7 @@ import app.irvanyale.com.moviecatalogue.data.MovieEntity;
 import app.irvanyale.com.moviecatalogue.data.TvshowEntity;
 import app.irvanyale.com.moviecatalogue.util.Const;
 import app.irvanyale.com.moviecatalogue.util.MyIdlingResource;
+import app.irvanyale.com.moviecatalogue.viewmodel.ViewModelFactory;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -52,8 +53,10 @@ public class DetailActivity extends AppCompatActivity {
             String dataType = extras.getString(EXTRA_TYPE);
 
             if (dataId != null && dataType != null) {
+                ViewModelFactory factory = ViewModelFactory.getInstance(this);
+
                 DetailViewModel detailViewModel =
-                        new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory())
+                        new ViewModelProvider(this, factory)
                                 .get(DetailViewModel.class);
 
                 detailViewModel.setSelectedData(this, dataId);
@@ -62,7 +65,7 @@ public class DetailActivity extends AppCompatActivity {
                 String date = "";
                 String desc = "";
                 String vote = "";
-                Drawable poster = null;
+                String poster = null;
 
                 switch (dataType){
                     case Const.TYPE_MOVIE:
@@ -92,7 +95,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    private void populateData(String title, String date, String desc, String vote, Drawable poster) {
+    private void populateData(String title, String date, String desc, String vote, String poster) {
         textTitle.setText(title);
         textDate.setText(date);
         textDescription.setText(desc);

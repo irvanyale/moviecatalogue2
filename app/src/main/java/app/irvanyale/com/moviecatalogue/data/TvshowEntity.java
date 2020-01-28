@@ -9,9 +9,9 @@ public class TvshowEntity {
     private String releaseDate;
     private String overview;
     private String vote;
-    private Drawable image;
+    private String image;
 
-    public TvshowEntity(String tvshowId, String title, String releaseDate, String overview, String vote, Drawable image) {
+    public TvshowEntity(String tvshowId, String title, String releaseDate, String overview, String vote, String image) {
         this.tvshowId = tvshowId;
         this.title = title;
         this.releaseDate = releaseDate;
@@ -60,11 +60,11 @@ public class TvshowEntity {
         this.vote = vote;
     }
 
-    public Drawable getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Drawable image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

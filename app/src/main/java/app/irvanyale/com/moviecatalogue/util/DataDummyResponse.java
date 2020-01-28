@@ -3,16 +3,16 @@ package app.irvanyale.com.moviecatalogue.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.irvanyale.com.moviecatalogue.data.MovieEntity;
-import app.irvanyale.com.moviecatalogue.data.TvshowEntity;
+import app.irvanyale.com.moviecatalogue.data.source.remote.response.MovieResponse;
+import app.irvanyale.com.moviecatalogue.data.source.remote.response.TvShowResponse;
 
-public class DataDummy {
+public class DataDummyResponse {
 
-    public static List<MovieEntity> generateDummyMovies() {
+    public static List<MovieResponse> generateDummyMovies() {
 
-        List<MovieEntity> movies = new ArrayList<>();
+        List<MovieResponse> movies = new ArrayList<>();
 
-        movies.add(new MovieEntity(
+        movies.add(new MovieResponse(
                 "332562",
                 "A Star Is Born",
                 "2018-04-25",
@@ -20,7 +20,7 @@ public class DataDummy {
                 "7.5",
                 "https://image.tmdb.org/t/p/w400/wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg"));
 
-        movies.add(new MovieEntity(
+        movies.add(new MovieResponse(
                 "399579",
                 "Alita: Battle Angel",
                 "2019-01-31",
@@ -28,7 +28,7 @@ public class DataDummy {
                 "6.9",
                 "https://image.tmdb.org/t/p/w400/xRWht48C2V8XNfzvPehyClOvDni.jpg"));
 
-        movies.add(new MovieEntity(
+        movies.add(new MovieResponse(
                 "297802",
                 "Aquaman",
                 "2018-12-07",
@@ -36,7 +36,7 @@ public class DataDummy {
                 "6.8",
                 "https://image.tmdb.org/t/p/w400/5Kg76ldv7VxeX9YlcQXiowHgdX6.jpg"));
 
-        movies.add(new MovieEntity(
+        movies.add(new MovieResponse(
                 "424694",
                 "Bohemian Rhapsody",
                 "2018-10-24",
@@ -44,7 +44,7 @@ public class DataDummy {
                 "8.0",
                 "https://image.tmdb.org/t/p/w400/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg"));
 
-        movies.add(new MovieEntity(
+        movies.add(new MovieResponse(
                 "438650",
                 "Cold Pursuit",
                 "2019-02-07",
@@ -52,7 +52,7 @@ public class DataDummy {
                 "5.4",
                 "https://image.tmdb.org/t/p/w400/hXgmWPd1SuujRZ4QnKLzrj79PAw.jpg"));
 
-        movies.add(new MovieEntity(
+        movies.add(new MovieResponse(
                 "480530",
                 "Creed II",
                 "2018-11-21",
@@ -60,7 +60,7 @@ public class DataDummy {
                 "6.8",
                 "https://image.tmdb.org/t/p/w400/v3QyboWRoA4O9RbcsqH8tJMe8EB.jpg"));
 
-        movies.add(new MovieEntity(
+        movies.add(new MovieResponse(
                 "338952",
                 "Fantastic Beasts: The Crimes of Grindelwald",
                 "2018-11-14",
@@ -68,7 +68,7 @@ public class DataDummy {
                 "6.8",
                 "https://image.tmdb.org/t/p/w400/fMMrl8fD9gRCFJvsx0SuFwkEOop.jpg"));
 
-        movies.add(new MovieEntity(
+        movies.add(new MovieResponse(
                 "450465",
                 "Glass",
                 "2019-01-16",
@@ -76,7 +76,7 @@ public class DataDummy {
                 "6.5",
                 "https://image.tmdb.org/t/p/w400/svIDTNUoajS8dLEo7EosxvyAsgJ.jpg"));
 
-        movies.add(new MovieEntity(
+        movies.add(new MovieResponse(
                 "166428",
                 "How to Train Your Dragon: The Hidden World",
                 "2019-01-03",
@@ -84,7 +84,7 @@ public class DataDummy {
                 "7.7",
                 "https://image.tmdb.org/t/p/w400/xvx4Yhf0DVH8G4LzNISpMfFBDy2.jpg"));
 
-        movies.add(new MovieEntity(
+        movies.add(new MovieResponse(
                 "299536",
                 "Avengers: Infinity War",
                 "2018-10-03",
@@ -95,11 +95,24 @@ public class DataDummy {
         return movies;
     }
 
-    public static List<TvshowEntity> generateDummyTvShows() {
+    public static MovieResponse generateDummyMoviesById(String id) {
+        MovieResponse movieResponse = null;
+        List<MovieResponse> movies = generateDummyMovies();
 
-        List<TvshowEntity> tvshows = new ArrayList<>();
+        for (MovieResponse response : movies){
+            if (response.getMovieId().equals(id)){
+                movieResponse = response;
+            }
+        }
 
-        tvshows.add(new TvshowEntity(
+        return movieResponse;
+    }
+
+    public static List<TvShowResponse> generateDummyTvShows() {
+
+        List<TvShowResponse> tvshows = new ArrayList<>();
+
+        tvshows.add(new TvShowResponse(
                 "1412",
                 "Arrow",
                 "2012-10-10",
@@ -107,7 +120,7 @@ public class DataDummy {
                 "5.9",
                 "https://image.tmdb.org/t/p/w400/gKG5QGz5Ngf8fgWpBsWtlg5L2SF.jpg"));
 
-        tvshows.add(new TvshowEntity(
+        tvshows.add(new TvShowResponse(
                 "79501",
                 "Doom Patrol",
                 "2019-02-15",
@@ -115,7 +128,7 @@ public class DataDummy {
                 "6.5",
                 "https://image.tmdb.org/t/p/w400/nVN7Dt0Xr78gnJepRsRLaLYklbY.jpg"));
 
-        tvshows.add(new TvshowEntity(
+        tvshows.add(new TvShowResponse(
                 "12609",
                 "Dragon Ball",
                 "1986-02-26",
@@ -123,7 +136,7 @@ public class DataDummy {
                 "7.1",
                 "https://image.tmdb.org/t/p/w400/3wx3EAMtqnbSLhGG8NrqXriCUIQ.jpg"));
 
-        tvshows.add(new TvshowEntity(
+        tvshows.add(new TvShowResponse(
                 "46261",
                 "Fairy Tail",
                 "2009-10-12",
@@ -131,7 +144,7 @@ public class DataDummy {
                 "6.6",
                 "https://image.tmdb.org/t/p/w400/58GKcwFV3lpVOGzybeMrrNOjHpz.jpg"));
 
-        tvshows.add(new TvshowEntity(
+        tvshows.add(new TvShowResponse(
                 "1434",
                 "Family Guy",
                 "1999-01-31",
@@ -139,7 +152,7 @@ public class DataDummy {
                 "6.5",
                 "https://image.tmdb.org/t/p/w400/gBGUL1UTUNmdRQT8gA1LUV4yg39.jpg"));
 
-        tvshows.add(new TvshowEntity(
+        tvshows.add(new TvShowResponse(
                 "60735",
                 "The Flash",
                 "2014-10-07",
@@ -147,7 +160,7 @@ public class DataDummy {
                 "6.8",
                 "https://image.tmdb.org/t/p/w400/wHa6KOJAoNTFLFtp7wguUJKSnju.jpg"));
 
-        tvshows.add(new TvshowEntity(
+        tvshows.add(new TvShowResponse(
                 "1399",
                 "Game of Thrones",
                 "2011-04-17",
@@ -155,7 +168,7 @@ public class DataDummy {
                 "8.2",
                 "https://image.tmdb.org/t/p/w400/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg"));
 
-        tvshows.add(new TvshowEntity(
+        tvshows.add(new TvShowResponse(
                 "60708",
                 "Gotham",
                 "2014-09-22",
@@ -163,7 +176,7 @@ public class DataDummy {
                 "6.9",
                 "https://image.tmdb.org/t/p/w400/4XddcRDtnNjYmLRMYpbrhFxsbuq.jpg"));
 
-        tvshows.add(new TvshowEntity(
+        tvshows.add(new TvShowResponse(
                 "1416",
                 "Grey's Anatomy",
                 "2005-03-27",
@@ -171,7 +184,7 @@ public class DataDummy {
                 "6.5",
                 "https://image.tmdb.org/t/p/w400/jnsvc7gCKocXnrTXF6p03cICTWb.jpg"));
 
-        tvshows.add(new TvshowEntity(
+        tvshows.add(new TvShowResponse(
                 "54155",
                 "Hanna",
                 "2019-03-28",
@@ -180,5 +193,18 @@ public class DataDummy {
                 "https://image.tmdb.org/t/p/w400/5nSSkcM3TgpllZ7yTyBOQEgAX36.jpg"));
 
         return tvshows;
+    }
+
+    public static TvShowResponse generateDummyTvShowsById(String id) {
+        TvShowResponse tvshowResponse = null;
+        List<TvShowResponse> tvShows = generateDummyTvShows();
+
+        for (TvShowResponse response : tvShows){
+            if (response.getTvshowId().equals(id)){
+                tvshowResponse = response;
+            }
+        }
+
+        return tvshowResponse;
     }
 }

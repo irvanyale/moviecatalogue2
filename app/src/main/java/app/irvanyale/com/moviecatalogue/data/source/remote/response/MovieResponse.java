@@ -1,8 +1,6 @@
-package app.irvanyale.com.moviecatalogue.data;
+package app.irvanyale.com.moviecatalogue.data.source.remote.response;
 
-import android.graphics.drawable.Drawable;
-
-public class MovieEntity {
+public class MovieResponse {
 
     private String movieId;
     private String title;
@@ -11,7 +9,7 @@ public class MovieEntity {
     private String vote;
     private String image;
 
-    public MovieEntity(String movieId, String title, String releaseDate, String overview, String vote, String image) {
+    public MovieResponse(String movieId, String title, String releaseDate, String overview, String vote, String image) {
         this.movieId = movieId;
         this.title = title;
         this.releaseDate = releaseDate;
